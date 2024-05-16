@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Recommendations</h2>
+        <div class="buttons">
+            <a href="{{ url_for('routes.profile') }}" class="btn btn-secondary">Profile</a>
+        </div>
+        <div id="recommendation-card" class="game-card card" style="display: none;">
+            <h3 id="game-title" class="card-title"></h3>
+            <img id="game-image" src="" alt="" class="card-img-top">
+            <p id="game-genres"></p>
+            <p id="game-platforms"></p>
+            <div class="buttons">
+                <button id="dislike-button" class="btn btn-danger">Dislike</button>
+                <button id="like-button" class="btn btn-primary">Like</button>
+            </div>
+        </div>
+        <p id="no-games-message" style="display: none;">No games found</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

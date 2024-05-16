@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Your Liked Games</h2>
+        <a href="{{ url_for('routes.recommendations') }}" class="btn btn-primary">Back to Recommendations</a>
+        <div id="profile">
+            {% if games %}
+                {% for game in games %}
+                <div class="game-card card">
+                    <h3 class="card-title">{{ game.game_name }}</h3>
+                    <img src="{{ game.background_image }}" alt="{{ game.game_name }}" class="card-img-top">
+                    <label for="rating-{{ game.id }}">Rate this game:</label>
+                    <select id="rating-{{ game.id }}" class="form-control" onchange="rateGame('{{ game.game_id }}', this.value)">
+                        <option value="1" {% if game.rating == 1 %}selected{% endif %}>Bad</option>
+                        <option value="2" {% if game.rating == 2 %}selected{% endif %}>Average</option>
+                        <option value="3" {% if game.rating == 3 %}selected{% endif %}>Good</option>
+                    </select>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No liked games found</p>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
